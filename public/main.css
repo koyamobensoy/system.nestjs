@@ -21,7 +21,7 @@ body {
     color: var(--text); 
 }
 
-/* --- ANIMATIONS --- */
+
 @keyframes slideUp { 
     from { opacity: 0; transform: translateY(20px); } 
     to { opacity: 1; transform: translateY(0); } 
@@ -33,7 +33,7 @@ body {
 
 .fade-out { animation: fadeOut 0.5s forwards; }
 
-/* --- COMPACT LOGIN OVERLAY --- */
+
 #login-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(rgba(45, 90, 39, 0.8), rgba(27, 48, 34, 0.9)), 
@@ -49,7 +49,7 @@ body {
     padding: 30px; 
     border-radius: 20px;
     width: 90%; 
-    max-width: 360px; /* Mas maliit na width */
+    max-width: 360px;
     text-align: center;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     backdrop-filter: blur(10px);
@@ -60,7 +60,7 @@ body {
 .login-card h1 { font-size: 1.8rem; margin: 0; color: var(--primary); }
 .login-card p { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-weight: 500; }
 
-/* --- UI COMPONENTS --- */
+
 .card { 
     background: var(--white); padding: 25px; border-radius: 16px; 
     box-shadow: 0 4px 20px rgba(45, 90, 39, 0.08); 
@@ -88,7 +88,7 @@ input, select, textarea {
 }
 input:focus { border-color: var(--secondary); outline: none; background: var(--light-sage); }
 
-/* --- SIDEBAR --- */
+
 .sidebar { width: var(--sidebar-width); background: var(--primary); color: white; padding: 25px 15px; display: flex; flex-direction: column; transition: 0.3s; }
 .sidebar.collapsed { margin-left: calc(var(--sidebar-width) * -1); }
 .sidebar h2 { color: var(--accent); letter-spacing: 1px; margin-bottom: 30px; text-align: center; }
@@ -100,7 +100,7 @@ input:focus { border-color: var(--secondary); outline: none; background: var(--l
 .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
 .nav-item.active { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 
-/* --- DASHBOARD ELEMENTS --- */
+
 #main-dashboard { display: none; width: 100%; height: 100vh; flex-direction: row; }
 .content { flex: 1; overflow-y: auto; padding: 40px; }
 

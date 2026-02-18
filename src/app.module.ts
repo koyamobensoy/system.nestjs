@@ -1,29 +1,29 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
-import { AppController } from '../app.controller';
-import { AppService } from '../app.service';
-import { UsersModule } from './users.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    // Load environment variables globally
+    ConfigModule.forRoot({ isGlobal: true }),
 
+    // TypeORM / MySQL configuration for Railway
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',         
-      password: '',  
-      database: 'market',
+      url: process.env.MYSQL_PUBLIC_URL,  // Railway DB URL
       autoLoadEntities: true,
       synchronize: true,
+      ssl: {
+        rejectUnauthorized: false,       // required on Railway
+      },
     }),
 
+    // Serve static frontend files
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
       serveRoot: '/',

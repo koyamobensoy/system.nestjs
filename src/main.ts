@@ -1,6 +1,6 @@
 
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './users/app.module';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   console.log('🚀 Starting NestJS on Railway...');

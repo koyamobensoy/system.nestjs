@@ -146,22 +146,22 @@
     <script>
         const getEl = id => document.getElementById(id);
 
-        // Helper: Toggle between Login and Register
+
         function toggleAuth(isRegister) {
             getEl('loginForm').style.display = isRegister ? 'none' : 'block';
             getEl('registerForm').style.display = isRegister ? 'block' : 'none';
             getEl('auth-title').innerText = isRegister ? 'Student Registration' : 'Student Login';
         }
 
-        // --- AUTH LOGIC ---
+    
         
-        // LOGIN logic
+    
         getEl('loginForm').onsubmit = async (e) => {
             e.preventDefault();
             const email = getEl('loginEmail').value;
             
             try {
-                const response = await fetch('http://localhost:3000/users/display');
+                const response = await fetch('http://trustworthy-warmth-production-6f1f.up.railway.app/users/display');
                 const users = await response.json();
                 const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
@@ -173,7 +173,7 @@
             } catch(e) { alert("Server Error."); }
         };
 
-        // REGISTER logic
+        
         getEl('registerForm').onsubmit = async (e) => {
             e.preventDefault();
             const name = getEl('regName').value;
@@ -181,16 +181,16 @@
             const course = getEl('regCourse').value;
 
             try {
-                // Check if email already exists
-                const resCheck = await fetch('http://localhost:3000/users/display');
+                
+                const resCheck = await fetch('http://trustworthy-warmth-production-6f1f.up.railway.app/users/display');
                 const users = await resCheck.json();
                 if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
                     alert("Email already registered!");
                     return;
                 }
 
-                // Save to DB
-                await fetch('http://localhost:3000/users/users', {
+            
+                await fetch('http://trustworthy-warmth-production-6f1f.up.railway.app/users/users', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ name, email })
@@ -211,11 +211,11 @@
             loadUsers();
         }
 
-        // --- EXISTING LOGIC (KEEPING EVERYTHING ELSE) ---
+        
 
         async function loadUsers() {
             try {
-                const response = await fetch('http://localhost:3000/users/display');
+                const response = await fetch('http://trustworthy-warmth-production-6f1f.up.railway.app/users/display');
                 const users = await response.json();
                 const course = getEl('nav-course').innerText;
                 getEl('tableBody').innerHTML = users.map(user => `
@@ -233,7 +233,7 @@
 
         async function deleteUser(id) {
             if (!confirm('Permanently delete student record?')) return;
-            await fetch(`http://localhost:3000/users/${id}`, { method: 'DELETE' });
+            await fetch(`http://trustworthy-warmth-production-6f1f.up.railway.app/users/${id}`, { method: 'DELETE' });
             getEl(`row-${id}`).remove();
         }
 
@@ -258,7 +258,7 @@
 
         function toggleSidebar() { getEl('sidebar').classList.toggle('collapsed'); }
 
-        // (Assignment and Schedule logic remains exactly the same as your original)
+        
         getEl('assignmentForm').onsubmit = (e) => {
             e.preventDefault();
             const title = getEl('assignTitle').value;
